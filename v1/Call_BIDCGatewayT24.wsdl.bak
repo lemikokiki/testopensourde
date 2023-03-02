@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Created by TIBCO WSDL-->
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://bidc.com.kh/doProcessImpl/doProcessImpl/BusinessProcess" xmlns:ns0="http://bidc.com.kh/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://bidc.com.kh/doProcessImpl/doProcessImpl/BusinessProcess">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://bidc.com.kh/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="data" type="xs:string"/>
+            <xs:element name="doProcessReturn" type="xs:string"/>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:service name="BIDCGatewayT24">
+        <wsdl:port name="SOAPEventSource" binding="tns:SOAPEventSourceBinding">
+            <soap:address location="http://10.195.6.54:8111/BusinessProcess/BIDCGatewayT24"/>
+        </wsdl:port>
+    </wsdl:service>
+    <wsdl:portType name="BIDCGatewayT24">
+        <wsdl:operation name="doProcess">
+            <wsdl:input message="tns:doProcessRequest"/>
+            <wsdl:output message="tns:doProcessResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="SOAPEventSourceBinding" type="tns:BIDCGatewayT24">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="doProcess">
+            <soap:operation style="document" soapAction="/BusinessProcess/BIDCGatewayT24"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="data"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="doProcessReturn"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:message name="doProcessRequest">
+        <wsdl:part name="data" element="ns0:data"/>
+    </wsdl:message>
+    <wsdl:message name="doProcessResponse">
+        <wsdl:part name="doProcessReturn" element="ns0:doProcessReturn"/>
+    </wsdl:message>
+</wsdl:definitions>
